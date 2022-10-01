@@ -1,8 +1,16 @@
 class HTTPClient {
     fetchGetRequest(url) {
         return fetch(url)
-            .then(response => response.json())
-            .then(json => console.log(json))
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Something went wrong ...');
+                }
+            })
+            .then(json => {
+                return json
+            })
     }
 
     fetchPostRequest(url, jsonBody) {
