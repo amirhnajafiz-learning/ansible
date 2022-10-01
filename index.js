@@ -77,7 +77,15 @@ class HTTPClient {
         return fetch(url, {
             method: 'DELETE'
         })
-            .then(response => response.json())
-            .then(json => console.log(json))
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Something went wrong ...');
+                }
+            })
+            .then(json => {
+                return json;
+            })
     }
 }
