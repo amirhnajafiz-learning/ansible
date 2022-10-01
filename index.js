@@ -1,12 +1,12 @@
 class HTTPClient {
     fetchGetRequest(url) {
-        fetch(url)
+        return fetch(url)
             .then(response => response.json())
             .then(json => console.log(json))
     }
 
     fetchPostRequest(url, jsonBody) {
-        fetch(url, {
+        return fetch(url, {
             method: 'POST',
             body: JSON.stringify(jsonBody),
             headers: {
@@ -18,7 +18,7 @@ class HTTPClient {
     }
 
     fetchPutRequest(url, jsonBody) {
-        fetch(url, {
+        return fetch(url, {
             method: 'PUT',
             body: JSON.stringify(jsonBody),
             headers: {
@@ -30,7 +30,7 @@ class HTTPClient {
     }
 
     fetchPatchRequest(url, jsonBody) {
-        fetch(url, {
+        return fetch(url, {
             method: 'PATCH',
             body: JSON.stringify(jsonBody),
             headers: {
@@ -42,7 +42,7 @@ class HTTPClient {
     }
 
     fetchDeleteRequest(url) {
-        fetch(url, {
+        return fetch(url, {
             method: 'DELETE'
         })
             .then(response => response.json())
