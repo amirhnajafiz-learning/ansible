@@ -21,8 +21,16 @@ class HTTPClient {
                 "Content-type": "application/json; charset=UTF-8"
             }
         })
-            .then(response => response.json())
-            .then(json => console.log(json))
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Something went wrong ...');
+                }
+            })
+            .then(json => {
+                return json
+            })
     }
 
     fetchPutRequest(url, jsonBody) {
