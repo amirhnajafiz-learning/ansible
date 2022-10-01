@@ -5,14 +5,10 @@ class HTTPClient {
             .then(json => console.log(json))
     }
 
-    fetchPostRequest(url) {
+    fetchPostRequest(url, jsonBody) {
         fetch(url, {
             method: 'POST',
-            body: JSON.stringify({
-                title: 'foo',
-                body: 'bar',
-                userId: 1
-            }),
+            body: JSON.stringify(jsonBody),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
@@ -21,15 +17,10 @@ class HTTPClient {
             .then(json => console.log(json))
     }
 
-    fetchPutRequest(url) {
+    fetchPutRequest(url, jsonBody) {
         fetch(url, {
             method: 'PUT',
-            body: JSON.stringify({
-                id: 1,
-                title: 'foo',
-                body: 'bar',
-                userId: 1
-            }),
+            body: JSON.stringify(jsonBody),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
@@ -38,12 +29,10 @@ class HTTPClient {
             .then(json => console.log(json))
     }
 
-    fetchPatchRequest(url) {
+    fetchPatchRequest(url, jsonBody) {
         fetch(url, {
             method: 'PATCH',
-            body: JSON.stringify({
-                title: 'foo'
-            }),
+            body: JSON.stringify(jsonBody),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
