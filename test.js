@@ -23,7 +23,7 @@ fetchPatchRequest.then((json) => {
 let fetchPutRequest = httpClient.fetchPutRequest("https://jsonplaceholder.typicode.com/todos/1", {});
 fetchPutRequest.then((json) => {
     console.log(json);
-}) ;
+});
 
 let fetchDeleteRequest = httpClient.fetchDeleteRequest("https://jsonplaceholder.typicode.com/todos/1");
 fetchDeleteRequest.then((json) => {
