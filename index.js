@@ -89,3 +89,5 @@ class HTTPClient {
             })
     }
 }
+
+module.exports = HTTPClient;
