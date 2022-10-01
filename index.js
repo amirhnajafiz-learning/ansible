@@ -90,4 +90,4 @@ class HTTPClient {
     }
 }
 
-module.exports = HTTPClient;
+export default HTTPClient;
