@@ -1,12 +1,12 @@
 class HTTPClient {
-    fetchgetrequest() {
-        fetch('https://jsonplaceholder.typicode.com/todos/1')
+    fetchGetRequest(url) {
+        fetch(url)
             .then(response => response.json())
             .then(json => console.log(json))
     }
 
-    fetchpostrequest() {
-        fetch('https://jsonplaceholder.typicode.com/posts', {
+    fetchPostRequest(url) {
+        fetch(url, {
             method: 'POST',
             body: JSON.stringify({
                 title: 'foo',
@@ -21,8 +21,8 @@ class HTTPClient {
             .then(json => console.log(json))
     }
 
-    fetchputrequest() {
-        fetch('https://jsonplaceholder.typicode.com/posts/1', {
+    fetchPutRequest(url) {
+        fetch(url, {
             method: 'PUT',
             body: JSON.stringify({
                 id: 1,
@@ -38,8 +38,8 @@ class HTTPClient {
             .then(json => console.log(json))
     }
 
-    fetchpatchrequest() {
-        fetch('https://jsonplaceholder.typicode.com/posts/1', {
+    fetchPatchRequest(url) {
+        fetch(url, {
             method: 'PATCH',
             body: JSON.stringify({
                 title: 'foo'
@@ -52,8 +52,8 @@ class HTTPClient {
             .then(json => console.log(json))
     }
 
-    fetchdeleterequest() {
-        fetch('https://jsonplaceholder.typicode.com/posts/1', {
+    fetchDeleteRequest(url) {
+        fetch(url, {
             method: 'DELETE'
         })
             .then(response => response.json())
