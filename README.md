@@ -29,3 +29,24 @@ We put them in a directory called __inventory__. We can group our hosts by using
   |_ region-w
     |_ hosts-dc3.ini
 ```
+
+## playbook
+
+For executing tasks on each group, we assign some roles to each group. We need to create __playbooks__ in order to
+perform such operation. A playbook looks like this:
+
+```yaml
+---
+- name: web
+  hosts: web
+  roles:
+    - app
+    - nginx
+```
+
+We can also import playbooks in another playbook:
+
+```yaml
+---
+- import_playbook: default.yml
+```
