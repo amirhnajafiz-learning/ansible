@@ -1,0 +1,132 @@
+---
+
+- name: Install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - git
+    - sysstat
+    - htop
+    - tcpdump
+    - lftp
+  tags:
+    - install
+    - packages
+
+- name: Create Directory
+  file:
+    state: directory
+    path: "/tmp/nokhod"
+  tags:
+    - config
+
+- name: echo variable to file
+  shell: |
+    echo {{ VARIABLE }} > /tmp/nokhod/VARIABLE_FILE
+
+- name: print variable
+  debug:
+    msg: "{{ VARIABLE }}"
+  tags:
+    - config
+
+- name: Create Directory /var/temp/bin/
+  file:
+    state: directory
+    path: "{{ item }}"
+  loop:
+    - "/var/temp/bin/"
+    - "/var/temp/conf/"
+
+- name: Copy temp.sh
+  copy:
+    src: var/temp/bin/temp.sh
+    dest: /var/temp/bin/temp.sh
+    mode: 0754
+  tags:
+    - config
+
+- name: Copy temp.sh backup
+  copy:
+    src: /var/temp/bin/temp.sh
+    dest: /var/temp/bin/temp.sh-back
+    mode: 0644
+    remote_src: yes
+  tags:
+    - config
+
+- name: Copy temp.conf
+  copy:
+    src: var/temp/conf/temp.conf
+    dest: /var/temp/conf/
+    mode: 0640
+  tags:
+    - config
+
+- name: facts 
+  debug:
+    msg: "{{ ansible_facts.default_ipv4.address }}"
+
+- name: Create Directory arsenal
+  file:
+    state: directory
+    path: "{{ item }}"
+  loop:
+    - "/var/arsenal/bin/"
+    - "/var/arsenal/conf/"
+
+- name: Template arsenal
+  template:
+    src: var/arsenal/conf/arsenal.conf
+    dest: /var/arsenal/conf/arsenal.conf
+
+- name: print all facts
+  debug:
+    msg: "{{ ansible_facts }}"
+  tags:
+    - testwhen
+
+- name: create dir when app
+  file:
+    state: directory
+    path: "/tmp/app"
+  when: "ansible_facts.fqdn == 'app1.sudoer.net' or ansible_facts.fqdn == 'app2.sudoer.net'" 
+  tags:
+    - testwhen
+
+- name: create dir when app in hostname
+  file:
+    state: directory
+    path: "/tmp/appadas"
+  when: "'app' in ansible_facts.fqdn" 
+  tags:
+    - testwhen
+
+- name: create dir when app not in hostname
+  file:
+    state: directory
+    path: "/tmp/notapp"
+  when: "'app' not in ansible_facts.fqdn" 
+  tags:
+    - testwhen
+
+- name: create dir when db
+  file:
+    state: directory
+    path: "/tmp/db"
+  when: "ansible_facts.fqdn == 'db.sudoer.net'" 
+  tags:
+    - testwhen
+
+
+
+
+
+
+
+
+
+
+
