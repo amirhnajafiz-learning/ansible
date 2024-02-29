@@ -4,6 +4,10 @@ __Ansible__ is an automated configuration manager for controlling infrastructure
 we can divide our infrastructure (nodes) into groups and define tasks (roles) for them. Ansible is implemented
 with _python_ and it works using _ssh_.
 
+Ansible is module based, meaning that it has plugins and modules in order to define your tasks. Also, you can use
+the shell feature of ansible to write your own manifests. However, the modules are implemented in a better way, in
+case of errors and edge cases.
+
 ## structure
 
 Ansible structure consists of inventory, roles, logs, playbooks and an ansible config file. In the next part
