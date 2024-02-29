@@ -149,3 +149,27 @@ ansible-inventory -i inventory/main.yml --host db.sudoer.net
     "VARIABLE": "DB HOST VARS"
 }
 ```
+
+## Select an specific host
+
+```
+ansible-playbook --limit host1
+```
+
+## Select based on tags
+
+```
+ansible-playbook playbooks/all.yml --tag tag1,tag2
+```
+
+## Check the changes
+
+```
+ansible-playbook playbooks/all.yml --diff --check
+```
+
+## Pass a variable
+
+```
+ansible-playbook playbooks/all.yml --tag tag1,tag2 -e VARIABLE="value"
+```
